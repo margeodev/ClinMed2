@@ -1,0 +1,22 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisar Médicoss</ui:define>
+
+	<ui:define name="corpo">
+		<ui:insert name="head"><p>Pesquisar Médicos</p> </ui:insert>
+		<ui:include src="/WEB-INF/template/ListarCadastrados.xhtml">
+			<ui:param name="editBean" value="#{pesquisarMedicosBean}" />
+			<ui:param name="cadastrarNovo" value="/medico/CadastroMedico.xhtml" />
+			<ui:param name="nome" value="#{editBean.medFilter.nome}" />
+			<ui:param name="crm" value="#{editBean.medFilter.crm}" />
+			<ui:param name="especialidade" value="#{editBean.medFilter.especialidade}" />
+			<ui:param name="tituloTabela" value="Médicos Cadastrados" />
+			<ui:param name="pessoas" value="#{editBean.medicos}" />
+		</ui:include>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<!-- <p:panel style="margin-bottom:10px;">	 -->
+	<ui:insert name="head"></ui:insert>
+
+	<h:form id="frm">
+		<p:toolbar>
+			<p:toolbarGroup style="margin-left: 20px">
+				<p:commandButton value="Pesquisar" style="margin-right:20px"
+					icon="ui-icon-search" action="#{editBean.pesquisar}" update="frm" />
+			</p:toolbarGroup>
+
+			<p:toolbarGroup align="right">
+				<p:button value="Cadastrar Novo" style="margin-right:20px" outcome="#{cadastrarNovo}" />
+			</p:toolbarGroup>
+		</p:toolbar>
+
+		<p:panel id="panel" style="margin-bottom:10px">
+			<h:panelGrid columns="2" cellpadding="5" columnClasses="label, campo">
+				<p:outputLabel for="nome" value="Nome" />
+				<p:inputText id="nome" label="Nome" value="#{nome}" size="40" />
+
+				<p:outputLabel for="crm" value="CRM"
+					rendered="#{editBean.tipoMedico}" />
+				<p:inputText id="crm" label="crm" value="#{crm}"
+					rendered="#{editBean.tipoMedico}" />
+
+				<p:outputLabel for="cpf" value="CPF"
+					rendered="#{!editBean.tipoMedico}" />
+				<p:inputText id="cpf" label="crm" value="#{cpf}"
+					rendered="#{!editBean.tipoMedico}" />
+
+				<p:outputLabel for="espec" value="Especialidade"
+					rendered="#{editBean.tipoMedico}" />
+				<p:inputText id="espec" label="especialidade"
+					value="#{especialidade}" rendered="#{editBean.tipoMedico}" />
+
+			</h:panelGrid>
+		</p:panel>
+
+		<p:panel header="#{tituloTabela}">
+			<p:dataTable value="#{pessoas}" var="pessoa"
+				style="marging-top: 20px"
+				emptyMessage="Não foram encontrados registros" rows="20"
+				paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+
+				<p:column headerText="CRM" style="text-align: center; width: 180px"
+					rendered="#{editBean.tipoMedico}">
+					<h:outputText value="#{pessoa.crm}" />
+				</p:column>
+
+
+				<p:column headerText="Código"
+					style="text-align: center; width: 90px" sortBy="#{pessoa.id}"
+					rendered="#{!editBean.tipoMedico}">
+					<h:outputText value="#{pessoa.id}" />
+				</p:column>
+
+
+				<p:column headerText="CPF" style="text-align: center; width: 180px"
+					rendered="#{!editBean.tipoMedico}">
+					<h:outputText value="#{pessoa.cpf}" />
+				</p:column>
+
+
+				<p:column headerText="Nome" sortBy="#{pessoa.nome}">
+					<h:outputText value="#{pessoa.nome}" />
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+
+	<!-- <p:panel header="Médicos cadastrados">
+			<p:dataTable id="medicosTable" value="#{pmb.medicos}" var="medico"
+				style="marging-top: 20px" emptyMessage="Nenhum médico encontrado"
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="CRM" style="text-align: center; width: 180px">
+					<h:outputText value="#{medico.crm}" />
+				</p:column>
+
+				<p:column headerText="Nome" sortBy="#{medico.nome}">
+					<h:outputText value="#{medico.nome}" />
+				</p:column>				
+			</p:dataTable>
+		</p:panel> -->
+
+	<!-- </p:panel> -->
+
+</ui:composition>
