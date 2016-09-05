@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Endereco implements Serializable{
 	
@@ -31,6 +33,7 @@ public class Endereco implements Serializable{
 		this.id = id;
 	}
 	
+	@NotEmpty
 	@Column(length=45, nullable=false)
 	public String getLogradouro() {
 		return logradouro;
@@ -39,6 +42,7 @@ public class Endereco implements Serializable{
 		this.logradouro = logradouro;
 	}
 	
+	@NotEmpty
 	@Column(length=30, nullable=false)
 	public String getBairro() {
 		return bairro;
@@ -47,6 +51,7 @@ public class Endereco implements Serializable{
 		this.bairro = bairro;
 	}
 	
+	@NotEmpty
 	@Column(length=45, nullable=false)
 	public String getCidade() {
 		return cidade;
@@ -55,6 +60,7 @@ public class Endereco implements Serializable{
 		this.cidade = cidade;
 	}
 	
+	@NotEmpty
 	@Column(length=15, nullable=false)
 	public String getCep() {
 		return cep;
@@ -63,6 +69,7 @@ public class Endereco implements Serializable{
 		this.cep = cep;
 	}
 	
+	@NotEmpty
 	@Column(length=45, nullable=false)
 	public String getEstado() {
 		return estado;

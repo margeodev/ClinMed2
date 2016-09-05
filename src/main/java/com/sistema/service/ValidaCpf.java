@@ -28,5 +28,4 @@ public class ValidaCpf {
 				+ digito2.toString());
 	}
 
-	
 }
