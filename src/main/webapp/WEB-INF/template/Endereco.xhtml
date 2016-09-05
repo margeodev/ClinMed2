@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panel id="panel_endereco" style="margin-bottom:10px;">
+		<h:panelGrid columns="2" cellpadding="5" columnClasses="label, campo">		
+			
+			<p:outputLabel for="cep" value="CEP"/>
+			<p:inputMask mask="99999-999" id="cep" value="#{cep}">
+				<p:ajax listener="#{editBean.fillAddress}" event="change" process="@this" update="panel_endereco"/>
+			</p:inputMask>			
+			
+			<p:outputLabel for="rua" value="Rua"/>
+			<h:panelGroup>
+				<p:inputText id="rua" size="33" label="Rua"	value="#{logradouro}" 
+				onchange="this.value = removeAcentos(this.value)" maxlength="40"/>
+				<p:outputLabel for="num" value="Nº" style="margin-left: 15px" styleClass="label"/>
+				<p:inputText id="num" label="numero" size="7"  maxlength="15" style="margin-left: 10px"	value="#{numero}"/>
+			</h:panelGroup>
+
+			<p:outputLabel for="bairro" value="Bairro"/>
+			<p:inputText id="bairro" label="Bairro"	value="#{bairro}" maxlength="40" onchange="this.value = removeAcentos(this.value)"/>
+
+			<p:outputLabel for="cidade" value="Cidade"/>
+			<h:panelGroup>
+				<p:inputText id="cidade" label="Cidade"	value="#{cidade}" maxlength="40" onchange="this.value = removeAcentos(this.value)"/>
+				<p:outputLabel for="estado" value="Estado" style="margin-left:20px" styleClass="label"/>
+				<p:inputText id="estado" size="10" label="estado" maxlength="30" value="#{estado}"	style="margin-left: 10px" onchange="this.value = removeAcentos(this.value)"/>
+			</h:panelGroup>
+			
+			<p:outputLabel for="comp" value="Complemento"/>
+			<p:inputText id="comp" label="comp" size="40" maxlength="150" value="#{complemento}" onchange="this.value = removeAcentos(this.value)"/>
+		</h:panelGrid>
+	</p:panel>
+
+</ui:composition>

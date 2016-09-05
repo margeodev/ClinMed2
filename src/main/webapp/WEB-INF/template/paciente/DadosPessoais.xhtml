@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panel id="dados_pessoais" style="margin-bottom:10px;">
+		<h:panelGrid columns="2" cellpadding="5" columnClasses="label, campo">
+			<p:outputLabel for="nome" value="Nome" />
+			<p:inputText id="nome" value="#{nome}" size="20" maxlength="40"
+				onchange="this.value = removeAcentos(this.value)" />
+
+			<p:outputLabel for="cpf" value="CPF" />
+			<p:inputText id="cpf" value="#{cpf}" size="20" maxlength="20" />
+
+			<p:outputLabel for="telefone1" value="Telefone 1" />
+			<p:inputMask id="telefone1" mask="(99) 99999-9999" size="20"
+				value="#{telefone1}" maxlength="20" />
+
+			<p:outputLabel for="telefone2" value="telefone2" />
+			<p:inputMask id="telefone2" mask="(99) 99999-9999" size="20"
+				value="#{telefone2}" maxlength="20" />
+
+
+			<p:outputLabel value="Sexo" for="sexo" />
+			<p:selectOneRadio id="sexo" value="#{sexo}">
+				<f:selectItem itemLabel="Masculino" itemValue="MASCULINO"
+					style="padding-right: 10px" />
+				<f:selectItem itemLabel="Feminino" itemValue="FEMININO" />
+			</p:selectOneRadio>
+
+			<p:outputLabel value="Data de nascimento" for="dataNascimento" />
+			<p:calendar id="dataNascimento" value="#{dataNascimento}"
+				pattern="dd/MM/yyyy" readonlyInput="true" navigator="true"
+				maxdate="#{pacienteBean.dataHoje}" locale="pt_BR" />
+		</h:panelGrid>
+		
+	</p:panel>
+
+</ui:composition>

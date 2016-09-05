@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panel id="panel_especialidades" style="margin-bottom:10px;">
+		<p:selectManyCheckbox value="#{especialidadeMed}"
+			converter="especConverter" columns="4" layout="responsive"
+			styleClass="selectItems">
+			<f:selectItems value="#{especialidade}" var="esp"
+				itemLabel="#{esp.descricao}" itemValue="#{esp}" />
+		</p:selectManyCheckbox>
+	</p:panel>
+
+</ui:composition>
