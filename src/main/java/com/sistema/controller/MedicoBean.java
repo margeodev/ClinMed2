@@ -17,7 +17,6 @@ import com.sistema.repository.Especialidades;
 import com.sistema.service.MedicoService;
 import com.sistema.service.NegocioException;
 import com.sistema.util.jsf.FacesUtil;
-import com.sistema.util.jsf.GrowlView;
 
 @Named
 @ViewScoped

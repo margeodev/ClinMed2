@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:form id="frm_consulta">
+		<p:messages autoUpdate="true" closable="true"/>
+		<p:panel>
+			<h:panelGrid columns="2" cellpadding="5" columnClasses="label, campo" style="with: 100%">
+			
+				<p:outputLabel value="Tipo de consulta" />
+				<p:selectOneRadio value="#{consultaBean.consulta.tipoConsulta}" label="Tipo de consulta">
+            		<f:selectItems value="#{consultaBean.tipoConsulta}" 
+            			var="tipoConsulta" itemLabel="#{tipoConsulta.descricao}"
+            			itemValue="#{tipoConsulta}"/>            		
+        		</p:selectOneRadio>
+
+				<p:outputLabel for="paciente" value="Paciente" />
+				<h:panelGroup>
+					<p:autoComplete id="paciente" converter="pacConverter" forceSelection="true" 
+						scrollHeight="400"	completeMethod="#{consultaBean.escolherPaciente}" 
+						value="#{consultaBean.consulta.paciente}" var="p"	itemLabel="#{p.nome}" 
+						itemValue="#{p}" size="40" minQueryLength="4">
+						<p:ajax event="itemSelect" update="cpf" />
+					</p:autoComplete>
+					<p:watermark for="paciente" value="Nome do paciente" id="watermark" />
+					<p:outputLabel value="CPF" for="cpf" style="margin-left: 15px" styleClass="label" />
+					<p:inputText id="cpf" value="#{consultaBean.consulta.paciente.cpf}"
+						readonly="true"  styleClass="campo" size="12" style="margin-left: 10px"/>					
+				</h:panelGroup>
+				
+				<p:outputLabel value="Médico" for="medico"/>
+				<h:panelGroup>
+					<p:autoComplete id="medico" forceSelection="true" converter="medConverter"
+						completeMethod="#{consultaBean.escolherMedico}"
+						value="#{consultaBean.consulta.medico}" var="m"	itemLabel="#{m.nome}" itemValue="#{m}" size="40">
+						<p:ajax event="itemSelect" update="crm" />
+						</p:autoComplete>
+					<p:watermark for="medico" value="Nome do médico" />
+					
+					<p:outputLabel value="CRM" for="crm" style="margin-left: 15px" styleClass="label" />
+					<p:inputText id="crm" value="#{consultaBean.consulta.medico.crm}" readonly="true"
+						size="12" style="margin-left: 10px" styleClass="campo"/>
+				</h:panelGroup>
+				
+				<p:outputLabel value="Data" for="data"/>
+				<p:calendar id="data" value="#{consultaBean.consulta.data}"
+					pattern="dd/MM/yyyy" readonlyInput="true" locale="pt_BR" mindate="#{pacienteBean.dataHoje}"/>
+				
+				<p:spacer/>
+				<p:inputTextarea rows="8" cols="40" counter="display" maxlength="368" 
+					counterTemplate="{0} caracteres restantes" id="descricao" 
+					value="#{consultaBean.consulta.informacoes}" />
+				<p:watermark for="descricao" value="Informe detalhes da consulta" />
+				<h:outputText value="" id="display" />
+				
+				<p:spacer/>
+				<p:commandButton value="Cadastrar Consulta" action="#{consultaBean.salvar}"
+					update="frm_consulta"/>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</ui:composition>

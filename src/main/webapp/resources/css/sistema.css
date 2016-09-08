@@ -34,10 +34,11 @@ footer {
 	font-weight: bold;
 	text-align: right;
 	padding: 0px, 5px;
+	margin-left: 10px;
 }
 
 .campo {
-	padding-right: 5px;
+	padding-right: 5px;	
 }
 
 .ajax-status {
@@ -70,3 +71,36 @@ p {
 .selectItems label {
    margin: 2px;
 }
+
+/* Radio Buttons  */
+.ui-selectoneradio label {
+    margin-right: 20px;
+}
+
+
+/* Menu padrão do sistema */
+.menu-sistema {
+    border: 0px !important;
+    padding: 0px !important;
+    background: none !important;
+}
+
+.menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    color: #ffffff !important;
+}
+
+.ui-menu .ui-menuitem-link {   
+    color: #333399; 
+}
+
+.menu_main .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover {
+    background-color: #cceeff;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#ffffff),color-stop(100%,#cceeff));
+    background: linear-gradient(#30A3E0,#195D82);
+    color: #ffffff;
+}
+
+.menu-sistema .ui-icon-triangle-1-s {
+    background: url(#{resource['images:seta-para-baixo.png']}) no-repeat;
+}
+/* Menu sistema fim */

@@ -23,9 +23,9 @@ public class PacienteService implements Serializable {
 			throw new NegocioException("Já existe um paciente com o CPF informado");
 		} 			
 		
-		if (!ValidaCpf.isValidCPF(paciente.getCpf())){
-			throw new NegocioException("CPF inválido");
-		}		
+//		if (!ValidaCpf.isValidCPF(paciente.getCpf())){
+//			throw new NegocioException("CPF inválido");
+//		}		
 		pacientes.guardar(paciente);		
 	}
 }

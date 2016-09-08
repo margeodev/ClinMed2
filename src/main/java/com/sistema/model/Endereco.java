@@ -43,7 +43,7 @@ public class Endereco implements Serializable{
 	}
 	
 	@NotEmpty
-	@Column(length=30, nullable=false)
+	@Column(length=50, nullable=false)
 	public String getBairro() {
 		return bairro;
 	}

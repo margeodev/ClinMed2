@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<header>
+		<div style="float: left">
+			<h:link outcome="/Home">
+				<h:graphicImage library="images" name="logoClinmed.png" />
+			</h:link>
+		</div>
+
+		<div style="float: right; margin-right: 110px" class="menu_main">
+			<span
+				style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
+				Olá usuário! </span>
+
+			<h:form style="display: inline-block">
+				<p:menubar styleClass="menu-sistema">
+					<p:submenu label="Cadastros" icon="fa fa-save">
+						<p:menuitem value="Paciente" outcome="/paciente/CadastroPaciente" />
+						<p:menuitem value="Médico" outcome="/medico/CadastroMedico" />
+					</p:submenu>
+
+					<p:submenu label="Consultas">
+						<p:menuitem value="Nova consulta" outcome="/consultas/NovaConsulta" />
+						<p:menuitem value="Pesquisa" />
+					</p:submenu>
+
+					<p:submenu label="Pesquisar" icon="fa fa-search">
+						<p:menuitem value="Paciente"
+							outcome="/paciente/PesquisarPacientes" />
+						<p:menuitem value="Médico" outcome="/medico/PesquisarMedicos" />
+					</p:submenu>					
+					<p:menuitem value="Sair" />
+				</p:menubar>
+			</h:form>
+		</div>
+	</header>
+
+</ui:composition>
