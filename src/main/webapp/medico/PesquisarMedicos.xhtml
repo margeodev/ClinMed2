@@ -8,15 +8,31 @@
 	<ui:define name="titulo">Pesquisar Médicoss</ui:define>
 
 	<ui:define name="corpo">
-		<ui:insert name="head"><p>Pesquisar Médicos</p> </ui:insert>
-		<ui:include src="/WEB-INF/template/ListarCadastrados.xhtml">
-			<ui:param name="editBean" value="#{pesquisarMedicosBean}" />
-			<ui:param name="cadastrarNovo" value="/medico/CadastroMedico.xhtml" />
-			<ui:param name="nome" value="#{editBean.medFilter.nome}" />
-			<ui:param name="crm" value="#{editBean.medFilter.crm}" />
-			<ui:param name="especialidade" value="#{editBean.medFilter.especialidade}" />
-			<ui:param name="tituloTabela" value="Médicos Cadastrados" />
-			<ui:param name="pessoas" value="#{editBean.medicos}" />
-		</ui:include>
+		<p>Pesquisar Médicos</p>
+		<h:form id="frm">
+			<!-- Adiciona a toobar para pesquisa e cadastro de novo médico -->
+			<ui:include src="/WEB-INF/template/toolbars/ToolbarPesquisas.xhtml" >
+				<ui:param name="editBean" value="#{pesquisarMedicosBean}" />
+				<ui:param name="labelBtn" value="Cadastrar novo" />
+				<ui:param name="cadastrarNovo" value="/medico/CadastroMedico.xhtml" />
+			</ui:include>
+		
+			<!-- Adiciona Painel para filtrar o médico na pesquisa -->
+			<ui:include src="/WEB-INF/template/pessoas/FiltrosPessoaTemplate.xhtml">
+				<ui:param name="editBean" value="#{pesquisarMedicosBean}" />
+				<ui:param name="nome" value="#{pesquisarMedicosBean.medFilter.nome}" />
+				<ui:param name="crm" value="#{pesquisarMedicosBean.medFilter.crm}" />
+				<ui:param name="especialidade" value="#{pesquisarMedicosBean.medFilter.especialidade}" />
+			</ui:include> 
+		
+			 <!-- Adiciona a Datatable com os resultados da pesquisa -->
+			<ui:include src="/WEB-INF/template/pessoas/DatatablePessoaTemplate.xhtml">
+				<ui:param name="pessoas" value="#{pesquisarMedicosBean.medicos}" />
+				<ui:param name="editBean" value="#{pesquisarMedicosBean}" />
+				<ui:param name="tituloTabela" value="Médicos Cadastrados" />				
+			</ui:include>
+			
+		</h:form>
+	
 	</ui:define>
 </ui:composition>

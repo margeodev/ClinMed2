@@ -1,0 +1,30 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Consultas registradas </ui:define>
+
+	<ui:define name="corpo">
+		<p>Pesquisar Consultas</p>
+		
+		<h:form>
+			<!-- Inclui um Panel para filtrar a consulta -->
+			<ui:include src="/WEB-INF/template/consultas/FiltrosConsultaTemplate.xhtml" >
+				<ui:param name="medNome" value="#{pesquisarConsultasBean.consultaFilter.medicoNome}" />
+				<ui:param name="pacNome" value="#{pesquisarConsultasBean.consultaFilter.pacienteNome}" />
+				<ui:param name="data" value="#{pesquisarConsultasBean.consultaFilter.dataConsulta}" />
+			</ui:include>
+			
+			<!-- Inclui uma tabela com uma lista de consultas-->
+			<ui:include src="/WEB-INF/template/consultas/ListarConsultasTemplate.xhtml" >
+				<ui:param name="tituloTabela" value="Consultas Cadastrados" />
+				<ui:param name="consultas" value="#{pesquisarConsultasBean.consultas}" />			
+			</ui:include>
+		
+		</h:form>
+
+	</ui:define>
+</ui:composition>

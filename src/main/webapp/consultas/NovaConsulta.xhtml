@@ -8,10 +8,15 @@
 	<ui:define name="titulo">Nova Consulta</ui:define>
 
 	<ui:define name="corpo">
-		<p>Nova Consulta</p>		
-		<ui:include src="/WEB-INF/template/NovaConsultaTemplate.xhtml"/>
-		
-		
+		<p>Nova Consulta</p>
+		<h:form>
+			<p:messages autoUpdate="true" closable="true" />
+			
+			<ui:include	src="/WEB-INF/template/consultas/NovaConsultaTemplate.xhtml" />
 
+			<ui:include src="/WEB-INF/template/toolbars/ToolbarCadastro.xhtml">
+				<ui:param name="editBean" value="#{consultaBean}" />
+			</ui:include>
+		</h:form>
 	</ui:define>
 </ui:composition>

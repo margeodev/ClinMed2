@@ -1,4 +1,4 @@
-package com.sistema.controller;
+package com.sistema.controller.consultas;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class ConsultaBean implements Serializable{
 		consulta = new Consulta();
 	}
 	
-	public void salvar(){
+	public void adicionar(){
 		try {
 			consultaService.salvar(consulta);
 			limpar();

@@ -13,7 +13,7 @@
 			<p:messages autoUpdate="true" closable="true" />
 			<p:tabView>
 				<p:tab title="Dados Pessoais">
-					<ui:include src="/WEB-INF/template/DadosPessoais.xhtml">
+					<ui:include src="/WEB-INF/template/pessoas/DadosPessoais.xhtml">
 						<ui:param name="editBean" value="#{medicoBean}" />
 						<ui:param name="nome" value="#{medicoBean.medico.nome}" />
 						<ui:param name="crm" value="#{medicoBean.medico.crm}" />
@@ -23,7 +23,7 @@
 				</p:tab>
 
 				<p:tab title="Endereço">
-					<ui:include src="/WEB-INF/template/Endereco.xhtml">
+					<ui:include src="/WEB-INF/template/pessoas/Endereco.xhtml">
 						<ui:param name="editBean" value="#{medicoBean}" />
 						<ui:param name="cep" value="#{medicoBean.medico.endereco.cep}" />
 						<ui:param name="logradouro" value="#{medicoBean.medico.endereco.logradouro}" />
@@ -36,16 +36,14 @@
 				</p:tab>
 
 				<p:tab title="Especialidades">
-					<ui:include src="/WEB-INF/template/medico/Especialidades.xhtml">
-						<ui:param name="especialidadeMed"
-							value="#{medicoBean.medico.especialidade}" />
-						<ui:param name="especialidade"
-							value="#{medicoBean.especialidades}" />
+					<ui:include src="/WEB-INF/template/pessoas/medico/Especialidades.xhtml">
+						<ui:param name="especialidadeMed" value="#{medicoBean.medico.especialidade}" />
+						<ui:param name="especialidade" value="#{medicoBean.especialidades}" />
 					</ui:include>
-				</p:tab>
+				</p:tab>				
 			</p:tabView>
 
-			<ui:include src="/WEB-INF/template/ToolBar.xhtml">
+			<ui:include src="/WEB-INF/template/toolbars/ToolbarCadastro.xhtml">
 				<ui:param name="editBean" value="#{medicoBean}" />
 			</ui:include>
 

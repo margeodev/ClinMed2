@@ -1,4 +1,4 @@
-package com.sistema.controller;
+package com.sistema.controller.pacientes;
 
 import java.io.Serializable;
 import java.util.Date;

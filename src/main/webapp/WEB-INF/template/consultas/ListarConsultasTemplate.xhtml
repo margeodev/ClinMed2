@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<p:panel header="#{tituloTabela}">
+		<p:dataTable value="#{consultas}" var="consulta"
+			style="marging-top: 20px"
+			emptyMessage="Não foram encontrados registros" rows="20"
+			paginator="true" paginatorAlwaysVisible="false"
+			paginatorPosition="bottom">
+
+			<p:column headerText="Código" style="text-align: center; width: 30px">
+				<h:outputText value="#{consulta.id}" />
+			</p:column>
+
+			<p:column headerText="Paciente" style="width: 180px">
+				<h:outputText value="#{consulta.paciente.nome}" />
+			</p:column>
+
+			<p:column headerText="Médico" style="width: 180px">
+				<h:outputText value="#{consulta.medico.nome}" />
+			</p:column>
+
+			<p:column headerText="Data da consulta"
+				style="text-align: center; width: 70px">
+				<h:outputText value="#{consulta.data}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Tipo de consulta"
+				style="text-align: center; width: 80px">
+				<h:outputText value="#{consulta.tipoConsulta}" />
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+
+</ui:composition>

@@ -13,7 +13,7 @@
 			<p:messages autoUpdate="true" closable="true" />
 			<p:tabView>
 				<p:tab title="Dados Pessoais">
-					<ui:include src="/WEB-INF/template/DadosPessoais.xhtml">
+					<ui:include src="/WEB-INF/template/pessoas/DadosPessoais.xhtml">
 						<ui:param name="editBean" value="#{pacienteBean}" />
 						<ui:param name="nome" value="#{pacienteBean.paciente.nome}" />
 						<ui:param name="cpf" value="#{pacienteBean.paciente.cpf}" />
@@ -27,7 +27,7 @@
 				</p:tab>
 
 				<p:tab title="Endereço">
-					<ui:include src="/WEB-INF/template/Endereco.xhtml">
+					<ui:include src="/WEB-INF/template/pessoas/Endereco.xhtml">
 						<ui:param name="editBean" value="#{pacienteBean}" />
 						<ui:param name="cep" value="#{pacienteBean.paciente.endereco.cep}" />
 						<ui:param name="logradouro" value="#{pacienteBean.paciente.endereco.logradouro}" />
@@ -40,7 +40,7 @@
 				</p:tab>
 			</p:tabView>
 
-			<ui:include src="/WEB-INF/template/ToolBar.xhtml">
+			<ui:include src="/WEB-INF/template/toolbars/ToolbarCadastro.xhtml">
 				<ui:param name="editBean" value="#{pacienteBean}" />
 			</ui:include>
 		</h:form>

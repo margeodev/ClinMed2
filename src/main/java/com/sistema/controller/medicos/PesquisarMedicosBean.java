@@ -1,4 +1,4 @@
-package com.sistema.controller;
+package com.sistema.controller.medicos;
 
 import java.io.Serializable;
 import java.util.List;

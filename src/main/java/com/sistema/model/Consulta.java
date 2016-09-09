@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -68,6 +70,7 @@ public class Consulta implements Serializable{
 	
 	@NotNull
 	@Column(name="tipo_consulta", length=20)
+	@Enumerated(EnumType.STRING)
 	public TipoConsulta getTipoConsulta() {
 		return tipoConsulta;
 	}

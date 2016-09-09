@@ -5,17 +5,32 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo">Pesquisar Pacientes</ui:define>
+	<ui:define name="titulo">Pesquisar pacientes</ui:define>
 
 	<ui:define name="corpo">
-		<ui:insert name="head"><p>Pesquisar Pacientes</p> </ui:insert>
-		<ui:include src="/WEB-INF/template/ListarCadastrados.xhtml">
-			<ui:param name="editBean" value="#{pesquisarPacientesBean}" />
-			<ui:param name="cadastrarNovo" value="/paciente/CadastroPaciente.xhtml" />				
-			<ui:param name="nome" value="#{editBean.pacFilter.nome}" />				
-			<ui:param name="cpf" value="#{editBean.pacFilter.cpf}" />				
-			<ui:param name="tituloTabela" value="Pacientes Cadastrados" />
-			<ui:param name="pessoas" value="#{editBean.pacientes}" />
-		</ui:include>
+		<p>Pesquisar Pacientes</p>
+		<h:form id="frm">
+			<!-- Adiciona a toobar para pesquisa e cadastro de novo paciente -->
+			<ui:include src="/WEB-INF/template/toolbars/ToolbarPesquisas.xhtml" >
+				<ui:param name="editBean" value="#{pesquisarPacientesBean}" />
+				<ui:param name="labelBtn" value="Cadastrar novo" />
+				<ui:param name="cadastrarNovo" value="/paciente/CadastroPaciente.xhtml" />
+			</ui:include>
+		
+			<!-- Adiciona Painel para filtrar o paciente na pesquisa -->
+			<ui:include src="/WEB-INF/template/pessoas/FiltrosPessoaTemplate.xhtml">
+				<ui:param name="editBean" value="#{pesquisarPacientesBean}" />
+				<ui:param name="nome" value="#{pesquisarPacientesBean.pacFilter.nome}" />
+				<ui:param name="cpf" value="#{pesquisarPacientesBean.pacFilter.cpf}" />
+			</ui:include> 
+		
+			 <!-- Adiciona a Datatable com os resultados da pesquisa -->
+			<ui:include src="/WEB-INF/template/pessoas/DatatablePessoaTemplate.xhtml">
+				<ui:param name="pessoas" value="#{pesquisarPacientesBean.pacientes}" />
+				<ui:param name="editBean" value="#{pesquisarPacientesBean}" />
+				<ui:param name="tituloTabela" value="Pacientes Cadastrados" />				
+			</ui:include>
+			
+		</h:form>		
 	</ui:define>
 </ui:composition>

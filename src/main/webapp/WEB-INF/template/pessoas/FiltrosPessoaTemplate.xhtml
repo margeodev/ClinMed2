@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panel id="panel" style="margin-bottom:10px">
+		<h:panelGrid columns="2" cellpadding="5" columnClasses="label, campo">
+			<p:outputLabel for="nome" value="Nome" />
+			<p:inputText id="nome" label="Nome" value="#{nome}" size="40" />
+
+			<p:outputLabel for="crm" value="CRM" rendered="#{editBean.tipoMedico}" />
+			<p:inputText id="crm" label="crm" value="#{crm}" rendered="#{editBean.tipoMedico}" />
+
+			<p:outputLabel for="cpf" value="CPF" rendered="#{!editBean.tipoMedico}" />
+			<p:inputText id="cpf" label="crm" value="#{cpf}" rendered="#{!editBean.tipoMedico}" />
+
+			<p:outputLabel for="espec" value="Especialidade" rendered="#{editBean.tipoMedico}" />
+			<p:inputText id="espec" label="especialidade" value="#{especialidade}" rendered="#{editBean.tipoMedico}" />
+		</h:panelGrid>
+	</p:panel>
+
+</ui:composition>
