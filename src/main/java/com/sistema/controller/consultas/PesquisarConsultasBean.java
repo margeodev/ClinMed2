@@ -30,6 +30,10 @@ public class PesquisarConsultasBean implements Serializable {
 		consultas = consultasRep.todas();
 	}
 
+	public void pesquisar(){		
+		consultas = consultasRep.filtrar(consultaFilter);
+	}
+	
 	public List<Consulta> getConsultas() {
 		return consultas;
 	}

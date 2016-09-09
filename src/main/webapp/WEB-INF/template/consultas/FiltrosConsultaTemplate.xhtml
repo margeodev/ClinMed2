@@ -13,7 +13,7 @@
 			<p:inputText id="pacNome" label="Nome do paciente" value="#{pacNome}" size="25" />
 			
 			<p:outputLabel for="data" value="Data da consulta" />
-			<p:inputText id="data" label="Data da consulta" value="#{data}" size="25" />			
+			<p:calendar pattern="dd/MM/yyyy" id="data" label="Data da consulta" value="#{dataConsulta}" size="25" />			
 		</h:panelGrid>
 	</p:panel>
 </ui:composition>

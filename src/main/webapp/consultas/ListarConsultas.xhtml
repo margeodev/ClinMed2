@@ -11,11 +11,18 @@
 		<p>Pesquisar Consultas</p>
 		
 		<h:form>
+			<!-- Adiciona a toobar para pesquisa e cadastro de nova consulta -->
+			<ui:include src="/WEB-INF/template/toolbars/ToolbarPesquisas.xhtml" >
+				<ui:param name="editBean" value="#{pesquisarConsultasBean}" />
+				<ui:param name="labelBtn" value="Cadastrar nova" />
+				<ui:param name="cadastrarNovo" value="/consultas/NovaConsulta.xhtml" />
+			</ui:include>
+			
 			<!-- Inclui um Panel para filtrar a consulta -->
 			<ui:include src="/WEB-INF/template/consultas/FiltrosConsultaTemplate.xhtml" >
 				<ui:param name="medNome" value="#{pesquisarConsultasBean.consultaFilter.medicoNome}" />
 				<ui:param name="pacNome" value="#{pesquisarConsultasBean.consultaFilter.pacienteNome}" />
-				<ui:param name="data" value="#{pesquisarConsultasBean.consultaFilter.dataConsulta}" />
+				<ui:param name="dataConsulta" value="#{pesquisarConsultasBean.consultaFilter.dataConsulta}" />
 			</ui:include>
 			
 			<!-- Inclui uma tabela com uma lista de consultas-->

@@ -33,14 +33,25 @@ public class Consultas implements Serializable {
 		return em.createQuery("from Consulta", Consulta.class).getResultList();
 	}
 	
-	public List<Medico> filtrar(ConsultaFilter filtro){
+	@SuppressWarnings("unchecked")
+	public List<Consulta> filtrar(ConsultaFilter filtro){
 		Session session = em.unwrap(Session.class);
-		Criteria criteria = session.createCriteria(Consulta.class);
+		Criteria criteria = session.createCriteria(Consulta.class)
+			.createAlias("medico", "m")
+			.createAlias("paciente", "p");
 		
 		if (StringUtils.isNotBlank(filtro.getMedicoNome())){
-			criteria.add(Restrictions.eq("medico", filtro.getMedicoNome()));
+			criteria.add(Restrictions.ilike("m.nome", filtro.getMedicoNome(), MatchMode.ANYWHERE));
 		}
-		return criteria.addOrder(Order.asc("nome")).list();
+		if (StringUtils.isNotBlank(filtro.getPacienteNome())){
+			criteria.add(Restrictions.ilike("p.nome", filtro.getPacienteNome(), MatchMode.ANYWHERE));
+		}
+		if (filtro.getDataConsulta() != null){
+			System.out.println(filtro.getDataConsulta());
+			criteria.add(Restrictions.eq("data", filtro.getDataConsulta()));
+		}
+		
+		return criteria.addOrder(Order.asc("id")).list();
 	}
 	
 }
