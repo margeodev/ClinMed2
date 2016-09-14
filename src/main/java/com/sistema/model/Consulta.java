@@ -10,8 +10,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import com.sistema.enums.StatusConsulta;
 import com.sistema.enums.TipoConsulta;
 
 @Entity
@@ -24,7 +26,9 @@ public class Consulta implements Serializable{
 	private Paciente paciente;
 	private Date data;
 	private String informacoes;
+	private String detalhes;	
 	private TipoConsulta tipoConsulta;
+	private StatusConsulta statusConsulta;
 	
 	@Id @GeneratedValue
 	public int getId() {
@@ -77,6 +81,32 @@ public class Consulta implements Serializable{
 	public void setTipoConsulta(TipoConsulta tipoConsulta) {
 		this.tipoConsulta = tipoConsulta;
 	}
+		
+	@Column(name="status", length=20)
+	@Enumerated(EnumType.STRING)
+	public StatusConsulta getStatusConsulta() {
+		return statusConsulta;
+	}
+	public void setStatusConsulta(StatusConsulta statusConsulta) {
+		this.statusConsulta = statusConsulta;
+	}
+	
+	@Transient
+	public boolean getFinalizada(){
+		if (getStatusConsulta() == StatusConsulta.FINALIZADA){
+			return true;
+		}
+		return false;
+	}
+	
+	@Column(length=380)
+	public String getDetalhes() {
+		return detalhes;
+	}
+	public void setDetalhes(String detalhes) {
+		this.detalhes = detalhes;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,6 +114,7 @@ public class Consulta implements Serializable{
 		result = prime * result + id;
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

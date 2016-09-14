@@ -85,6 +85,14 @@ p {
     background: none !important;
 }
 
+/* Texto do botão Atender dentro da tabela de consultas*/
+.ui-datatable-tablewrapper .ui-button .ui-button-text {
+    display: block;
+    line-height: normal;
+    font-weight: bold;
+    font-size: 12px;
+}
+
 .menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
     color: #ffffff !important;
 }

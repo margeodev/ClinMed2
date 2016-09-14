@@ -6,13 +6,16 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.sistema.enums.StatusConsulta;
 import com.sistema.enums.TipoConsulta;
 import com.sistema.model.Consulta;
 import com.sistema.model.Medico;
 import com.sistema.model.Paciente;
+import com.sistema.repository.Consultas;
 import com.sistema.repository.Medicos;
 import com.sistema.repository.Pacientes;
 import com.sistema.service.ConsultaService;
@@ -30,7 +33,9 @@ public class ConsultaBean implements Serializable{
 	private Medicos medRep;
 	@Inject
 	private ConsultaService consultaService;
-	
+	@Inject
+	private Consultas consultasRep;
+	private List<Object[]> consultas = new ArrayList<>();
 	private List<Paciente> pacientes;
 	private List<Medico> medicos;
 	private Consulta consulta;			
@@ -38,8 +43,9 @@ public class ConsultaBean implements Serializable{
 	@PostConstruct
 	public void init(){
 		medicos = medRep.todos();
-		pacientes = pacRep.todos();				
+		pacientes = pacRep.todos();
 		consulta = new Consulta();
+		consulta.setStatusConsulta(StatusConsulta.ABERTA);
 	}
 	
 	public void adicionar(){
@@ -52,14 +58,36 @@ public class ConsultaBean implements Serializable{
 		}
 	}
 	
+	public String finalizarAtendimento(){
+		try {
+			consulta.setStatusConsulta(StatusConsulta.FINALIZADA);
+			consultaService.salvar(consulta);
+			limpar();
+			return "/consultas/ListarConsultas";
+		} catch (NegocioException e) {
+			FacesUtil.addErrorMessage(e.getMessage());
+		}
+		
+		return "";
+	}
+	
 	private void limpar() {
 		this.consulta = new Consulta();		
+		this.consulta.setStatusConsulta(StatusConsulta.ABERTA);
 	}
 
 	public TipoConsulta[] getTipoConsulta(){
 		return TipoConsulta.values();
 	}
 	
+	public StatusConsulta[] getStatusConsulta(){
+		return StatusConsulta.values();
+	}
+	
+	public void porPaciente(ComponentSystemEvent event){
+		consultas = consultasRep.porPacienteMedico(consulta);
+	}
+
 	public List<Paciente> escolherPaciente(String input) {
         List<Paciente> pacSugeridos = new ArrayList<>();        
         for (Paciente pac : pacientes) {
@@ -80,8 +108,16 @@ public class ConsultaBean implements Serializable{
 		return medSugeridos;
 	}	
 	
+	public void atenderConsulta(ComponentSystemEvent event){
+		this.consulta.setStatusConsulta(StatusConsulta.ATENDIMENTO);	
+	}
+
 	public Consulta getConsulta() {
 		return consulta;
+	}
+
+	public List<Object[]> getConsultas() {
+		return consultas;
 	}
 
 	public void setConsulta(Consulta consulta) {

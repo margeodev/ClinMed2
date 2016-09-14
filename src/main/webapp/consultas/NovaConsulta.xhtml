@@ -12,8 +12,10 @@
 		<h:form>
 			<p:messages autoUpdate="true" closable="true" />
 			
+			<!-- Insere o template com o formulário para cadastrar uma nova consulta -->
 			<ui:include	src="/WEB-INF/template/consultas/NovaConsultaTemplate.xhtml" />
 
+			<!-- Insere a barra de tarefas para salvar a consulta preenchida -->
 			<ui:include src="/WEB-INF/template/toolbars/ToolbarCadastro.xhtml">
 				<ui:param name="editBean" value="#{consultaBean}" />
 			</ui:include>

@@ -25,10 +25,10 @@
 				<ui:param name="dataConsulta" value="#{pesquisarConsultasBean.consultaFilter.dataConsulta}" />
 			</ui:include>
 			
-			<!-- Inclui uma tabela com uma lista de consultas-->
-			<ui:include src="/WEB-INF/template/consultas/ListarConsultasTemplate.xhtml" >
+			<!-- Inclui uma tabela com uma lista de consultas -->
+			<ui:include src="/WEB-INF/template/consultas/DatatableConsultasTemplate.xhtml" >
 				<ui:param name="tituloTabela" value="Consultas Cadastrados" />
-				<ui:param name="consultas" value="#{pesquisarConsultasBean.consultas}" />			
+				<ui:param name="consultas" value="#{pesquisarConsultasBean.consultas}" />							
 			</ui:include>
 		
 		</h:form>

@@ -1,7 +1,10 @@
 package com.sistema.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -105,6 +109,26 @@ public class Paciente implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
+	@Transient
+	public int getIdade(){		
+		int idade = 0;
+		GregorianCalendar nascimento = new GregorianCalendar();
+		if (this.dataNascimento !=null ){
+			nascimento.setTime(dataNascimento);
+			
+			Calendar hoje = Calendar.getInstance();
+			idade = hoje.get(Calendar.YEAR) - nascimento.get(Calendar.YEAR);
+			nascimento.add(Calendar.YEAR, idade);
+			
+			if (hoje.before(nascimento)){
+				idade--;
+			}			
+		}	
+		
+		return idade;	
+		
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

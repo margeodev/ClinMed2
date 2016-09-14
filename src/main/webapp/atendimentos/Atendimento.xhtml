@@ -1,0 +1,30 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo">Atendimento</ui:define>
+
+	<ui:define name="corpo">
+		<f:metadata>
+			<f:event listener="#{consultaBean.porPaciente}" type="preRenderView" />
+			<f:event listener="#{consultaBean.atenderConsulta}" type="preRenderView" />
+			<o:viewParam name="consulta" value="#{consultaBean.consulta}" converter="consultaConverter" />
+		</f:metadata>
+		<p>Atendimeno de Consulta</p>
+		<h:form id="formAtendimento" rendered="#{!consultaBean.consulta.finalizada}">
+			<p:messages autoUpdate="true" closable="true" />			
+			<!-- Insere o template com o formulário para o preenchimento do atendimento da consulta -->
+			<ui:include	src="/WEB-INF/template/consultas/AtendimentoTemplate.xhtml" />			
+		</h:form>		
+		
+		<!-- Insere uma dataTable com as consultas realizadas pelo paciente -->
+		<ui:include src="/WEB-INF/template/consultas/DatatableAtendimentoTemplate.xhtml" >
+			<ui:param name="consultas" value="#{consultaBean.consultas}" />
+		</ui:include>
+	</ui:define>
+
+</ui:composition>

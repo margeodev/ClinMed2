@@ -35,6 +35,23 @@
 				style="text-align: center; width: 80px">
 				<h:outputText value="#{consulta.tipoConsulta}" />
 			</p:column>
+			
+			<p:column headerText="Status"
+				style="text-align: center; width: 80px">
+				<h:outputText value="#{consulta.statusConsulta}" />
+			</p:column>
+			
+			<p:column headerText="Ações"
+				style="text-align: center; width: 80px">
+				
+				<!-- <p:button value="Atender" outcome="/atendimentos/Atendimento">
+					<f:param name="consulta" value="#{consulta.id}"/>
+				</p:button> -->
+				
+				<p:button value="Atender" outcome="/atendimentos/Atendimento" disabled="#{consulta.finalizada}">
+					<f:param name="consulta" value="#{consulta.id}"/>
+				</p:button>
+			</p:column>
 		</p:dataTable>
 	</p:panel>
 

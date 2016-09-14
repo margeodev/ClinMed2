@@ -14,9 +14,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.sistema.model.Consulta;
-import com.sistema.model.Medico;
 import com.sistema.repository.filter.ConsultaFilter;
-import com.sistema.repository.filter.MedicoFilter;
 
 public class Consultas implements Serializable {
 	
@@ -31,6 +29,10 @@ public class Consultas implements Serializable {
 	
 	public List<Consulta> todas() {
 		return em.createQuery("from Consulta", Consulta.class).getResultList();
+	}
+	
+	public Consulta porId(int id) {
+		return em.find(Consulta.class, id);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -54,4 +56,20 @@ public class Consultas implements Serializable {
 		return criteria.addOrder(Order.asc("id")).list();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Object[]> porPacienteMedico(Consulta consulta){
+		String hql = "select c.data, c.tipoConsulta, c.detalhes from Consulta c where c.medico.nome "
+				+ "like :medico and c.paciente.nome like :paciente";
+		return em.createQuery(hql)
+				.setParameter("medico", consulta.getMedico().getNome())
+				.setParameter("paciente", consulta.getPaciente().getNome()).getResultList();
+	}
+	
+//	@SuppressWarnings("unchecked")
+//	public List<Consulta> porPacienteMedico(Consulta consulta){
+//		String hql = "from Consulta c where c.medico.nome like :medico and c.paciente.nome like :paciente";
+//		return em.createQuery(hql)
+//				.setParameter("medico", consulta.getMedico().getNome())
+//				.setParameter("paciente", consulta.getPaciente().getNome()).getResultList();
+//	}
 }
